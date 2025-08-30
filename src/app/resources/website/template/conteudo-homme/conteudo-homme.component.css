@@ -1,0 +1,95 @@
+.iconn {
+    padding: 10px;
+    background-color: #B4C2E7;
+    font-size: 2rem;
+    color: #101729;
+    border-radius: 8px;
+}
+
+.icon {
+    padding: 10px;
+    font-size: 3rem;
+    color: #ffffff;
+    border-radius: 50%;
+    width: 80px;
+    background-color: #101729;
+    height: 80px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 30px;
+    transition: 0.2s;
+    background-color: #F8F9FA;
+}
+
+.card:hover {
+    background-color: #101729;
+    color: rgb(255, 255, 255);
+
+    .icon {
+        color: #101729;
+        background-color: #fff;
+    }
+}
+
+.portfolio-box {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
+    img {
+        transition: transform 0.3s;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.6);
+        width: 100%;
+        height: 100%;
+        color: #fff;
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.4s;
+    }
+
+    &:hover img {
+        transform: scale(1.1);
+    }
+
+    &:hover .overlay {
+        opacity: 1;
+    }
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h5 {
+    font-weight: bold;
+}
+
+
+
+/* Responsividade básica */
+@media (max-width: 414px) {
+    .mobile-p {
+        padding: 20px;
+    }
+}

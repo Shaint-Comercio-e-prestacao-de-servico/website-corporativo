@@ -1,1 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    font-family: Poppins-Regular;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: Montserrat-Light;
+    src: url(../src/assets/font/Montserrat/Montserrat-Light.ttf);
+}
+
+
+@font-face {
+    font-family: Montserrat-Regular;
+    src: url(../src/assets/font/Montserrat/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-Bold;
+    src: url(../src/assets/font/Montserrat/Montserrat-Bold.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-Black;
+    src: url(../src/assets/font/Montserrat/Montserrat-Black.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-ExtraBold;
+    src: url(../src/assets/font/Montserrat/Montserrat-ExtraBold.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-Thin;
+    src: url(../src/assets/font/Montserrat/Montserrat-Thin.ttf);
+}
+
+@font-face {
+    font-family: Roboto-Regular;
+    src: url(../src/assets/font/Roboto/Roboto-Regular.ttf);
+}
+
+@font-face {
+    font-family: Poppins-Regular;
+    src: url(../src/assets/font/Poppins/Poppins-Regular.ttf);
+}
+
+.base {
+    animation: animar 0.3s linear;
+}
+
+@keyframes animar {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

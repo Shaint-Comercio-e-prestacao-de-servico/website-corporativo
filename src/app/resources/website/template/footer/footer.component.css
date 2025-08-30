@@ -1,0 +1,29 @@
+.footer {
+  background: #101729;
+  a {
+    color: #fff;
+    transition: color 0.3s;
+    &:hover {
+      color: #0d6efd;
+      text-decoration: underline;
+    }
+  }
+
+  i {
+    transition: transform 0.3s;
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  h5{
+    font-weight: bold;
+  }
+}
+
+/* Responsividade básica */
+@media (max-width: 414px) {
+    .mobile-p {
+        padding: 20px;
+    }
+}
