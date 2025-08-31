@@ -1,6 +1,6 @@
 <!-- What We Do Section -->
 <section class="py-5 text-center" id="what-we-do">
-    <div class="container mobile-p">
+    <div class="container mobile-p inicio-content">
 
         <h1 class="fw-bold display-5 mb-4 hero-subtitle">
             O Que Fazemos
@@ -11,17 +11,23 @@
             (TPAs),
             oferecendo manutenção, monitorização, ativação e suporte técnico com excelência.
         </p>
-        <div class="row">
-            <div class="col-md-3 mb-4" *ngFor="let service of services">
-                <div class="iconn mb-3"><i [ngClass]="service.icon"></i></div>
-                <p style="font-weight: bold;">{{ service.title }}</p>
+        <div class="row g-3">
+            <div class="col-12 col-sm-6 col-lg-6 col-xl-3" *ngFor="let service of services">
+                <div class="card-inicio">
+                    <div class="iconn mb-0">
+                        <i [ngClass]="service.icon"></i>
+                    </div>
+                    <p class="fw-bold mb-0">{{ service.title }}</p>
+                </div>
             </div>
         </div>
+
+
     </div>
 </section>
 
 <!-- Areas of Expertise -->
-<section class="py-5 bg-light mobile-p" id="expertise" >
+<section class="py-5 bg-light mobile-p" id="expertise">
     <div class="container text-center">
         <h1 class="fw-bold display-5 mb-4 hero-subtitle">
             Áreas de Especialização

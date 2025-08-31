@@ -16,15 +16,15 @@ export class ConteudoHommeComponent {
       icon: 'bi bi-tools'
     },
     {
-      title: 'Gestão de Terminais TPA',
+      title: 'Gestão de Parques de Terminais TPA',
       icon: 'bi bi-credit-card'
     },
     {
-      title: 'Monitorização e Incidentes',
+      title: 'Monitorização e Incidentes de Parques de Terminais',
       icon: 'bi bi-graph-up-arrow'
     },
     {
-      title: 'Configuração e Ativação',
+      title: 'Configuração e Ativação de Terminais TPA',
       icon: 'bi bi-gear'
     }
   ];

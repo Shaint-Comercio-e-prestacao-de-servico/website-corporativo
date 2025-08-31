@@ -1,9 +1,45 @@
+.card-group {
+    gap: 16px;
+    width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.card-inicio {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: start;
+    border-radius: 15px;
+    max-width: 100%;
+    cursor: pointer;
+    gap: 10px;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15),
+        0 0 15px rgba(0, 123, 255, 0.1);
+    transition: 0.2s;
+    /* toque de cor */
+}
+
+.card-inicio:hover {
+    backdrop-filter: blur(10px);
+    box-shadow: none;
+    /* toque de cor */
+}
+
 .iconn {
     padding: 10px;
-    background-color: #B4C2E7;
+    background-color: #b4c2e750;
     font-size: 2rem;
-    color: #101729;
+    color: #828eaf;
     border-radius: 8px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #B4C2E7;
 }
 
 .icon {
@@ -88,8 +124,16 @@ h5 {
 
 
 /* Responsividade básica */
-@media (max-width: 414px) {
+@media (max-width: 430px) {
     .mobile-p {
+        padding: 20px;
+    }
+
+    .card-inicio {
+        max-width: 100%;
+    }
+
+    .card-group {
         padding: 20px;
     }
 }
