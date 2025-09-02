@@ -26,6 +26,52 @@
     </div>
 </section>
 
+<!-- Who We Are Section -->
+<section class="py-5 text-white " id="who-we-are" style="background-color: #142041f5;">
+    <div class="container mobile-p">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="position-relative">
+                    <img src="assets/pessoa-concertando2-compressed.jpg"
+                        alt="Nossa equipe de especialistas" class="img-fluid rounded shadow-lg">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h1 class="fw-bold display-5 mb-4 hero-subtitle">
+                    Quem Somos
+                </h1>
+                <p class="lead mb-4">
+                    Somos uma equipe de especialistas apaixonados por tecnologia e inovação, dedicados a revolucionar
+                    o ecossistema de pagamentos automáticos em Angola.
+                </p>
+                <div class="d-flex mb-4">
+                    <div class="me-4">
+                        <h3 class="text-one fw-bold">500+</h3>
+                        <p class="mb-0">Terminais Ativos</p>
+                    </div>
+                    <div class="me-4">
+                        <h3 class="text-one fw-bold">98%</h3>
+                        <p class="mb-0">Uptime Garantido</p>
+                    </div>
+                    <div>
+                        <h3 class="text-one fw-bold">24/7</h3>
+                        <p class="mb-0">Suporte Técnico</p>
+                    </div>
+                </div>
+                <p>
+                    Fundada em 2025, a Incubadora Tecnológica nasceu da visão de transformar o panorama tecnológico
+                    angolano através de soluções inovadoras e confiáveis. Nossa missão é garantir que empresas
+                    e instituições financeiras possam operar com eficiência máxima, apoiadas pela mais avançada
+                    tecnologia em terminais de pagamento.
+                </p>
+                <div class="mt-4">
+                    <button class="btn btn-one btn-lg btn-hero px-4 me-2">Conheça a Equipe</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Areas of Expertise -->
 <section class="py-5 bg-light mobile-p" id="expertise">
     <div class="container text-center">
@@ -90,6 +136,43 @@
         <p class="mb-4">Orgulhamo-nos de servir instituições financeiras e empresas com soluções de alto desempenho.</p>
         <div class="d-flex justify-content-around align-items-center flex-wrap">
             <img *ngFor="let logo of clientLogos" [src]="logo" class="m-3" width="100px" />
+        </div>
+    </div>
+</section>
+
+<!-- Our Team Section -->
+<section class="py-5" id="our-team">
+    <div class="container mobile-p">
+        <div class="text-center mb-5">
+            <h1 class="fw-bold display-5 mb-4 hero-subtitle">
+                Nossa Equipe
+            </h1>
+            <p class="lead mx-auto" style="max-width: 700px;">
+                Conheça os profissionais dedicados que tornam possível a excelência dos nossos serviços e soluções
+                tecnológicas.
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-4" *ngFor="let member of teamMembers">
+                <div class="card team-card h-100 border-0 shadow-sm">
+                    <div class="card-img-top position-relative overflow-hidden">
+                        <img [src]="member.image" class="img-fluid w-100" alt="{{member.name}}">
+                        <div class="team-overlay d-flex align-items-center justify-content-center">
+                            <div class="social-links">
+                                <a href="#" class="text-white mx-2"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="text-white mx-2"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title mb-1">{{member.name}}</h5>
+                        <p class="text-primary mb-2">{{member.position}}</p>
+                        <p class="card-text small">{{member.description}}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

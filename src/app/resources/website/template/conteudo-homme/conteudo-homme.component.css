@@ -1,3 +1,15 @@
+.btn-one {
+    background: linear-gradient(#B4C2E7, #646c80);
+}
+.text-one {
+    color: linear-gradient(#B4C2E7, #646c80);
+}
+.btn-hero {
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
 .card-group {
     gap: 16px;
     width: 100%;

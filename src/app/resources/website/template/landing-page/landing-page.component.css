@@ -6,6 +6,10 @@
     /* espaçamento para navbar fixed-top */
 }
 
+.linknone{
+    text-decoration: none;
+    color: #ffffff;
+}
 /* SLIDESHOW */
 .slideshow {
     position: absolute;

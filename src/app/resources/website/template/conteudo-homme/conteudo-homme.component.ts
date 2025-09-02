@@ -28,6 +28,12 @@ export class ConteudoHommeComponent {
       icon: 'bi bi-gear'
     }
   ];
+  teamMembers = [
+            { name: 'Carlos Mendes', position: 'Diretor Técnico', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=500&q=80', description: 'Especialista em sistemas de pagamento com mais de 15 anos de experiência no setor.' },
+            { name: 'Ana Silva', position: 'Gerente de Projetos', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=500&q=80', description: 'Gerenciou mais de 50 implementações de terminais de pagamento em grandes empresas.' },
+            { name: 'Miguel Santos', position: 'Desenvolvedor Sênior', image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=500&q=80', description: 'Especialista em integração de sistemas e desenvolvimento de APIs para serviços financeiros.' }
+        ];
+        
 
   expertise = [
     {
