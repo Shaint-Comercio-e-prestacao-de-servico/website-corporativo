@@ -1,37 +1,46 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 gsap.registerPlugin(ScrollTrigger);
+
+
 
 @Component({
   selector: 'app-conteudo-homme',
   templateUrl: './conteudo-homme.component.html',
   styleUrls: ['./conteudo-homme.component.css']
 })
-export class ConteudoHommeComponent {
+export class ConteudoHommeComponent implements OnInit{
   services = [
     {
+      id: 1,
       title: 'Manutenção e Assistência Técnica',
       icon: 'bi bi-tools'
     },
     {
+      id: 2,
       title: 'Gestão de Parques de Terminais TPA',
       icon: 'bi bi-credit-card'
     },
     {
+      id: 3,
       title: 'Monitorização e Incidentes de Parques de Terminais',
       icon: 'bi bi-graph-up-arrow'
     },
     {
+      id: 4,
       title: 'Configuração e Ativação de Terminais TPA',
       icon: 'bi bi-gear'
     }
   ];
   teamMembers = [
-            { name: 'Carlos Mendes', position: 'Diretor Técnico', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=500&q=80', description: 'Especialista em sistemas de pagamento com mais de 15 anos de experiência no setor.' },
-            { name: 'Ana Silva', position: 'Gerente de Projetos', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=500&q=80', description: 'Gerenciou mais de 50 implementações de terminais de pagamento em grandes empresas.' },
-            { name: 'Miguel Santos', position: 'Desenvolvedor Sênior', image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=500&q=80', description: 'Especialista em integração de sistemas e desenvolvimento de APIs para serviços financeiros.' }
+            { name: 'Luciano Gonçalves', position: 'Coordenador de TI', image: 'assets/img/luciano.jpg', description: 'Especialista em sistemas de informação com mais de 15 anos de experiência no setor.' },
+            { name: 'Wester Tito', position: 'Desenvolvedor Frontend', image: 'assets/img/wester.jpg', description: 'Especialista em desenvolvimento frontend e design de layouts intuitivos.' },
+            { name: 'Pedro Kondo', position: 'Desenvolvedor Backend', image: 'assets/img/pedro.jpg', description: 'Especialista em integração de sistemas e desenvolvimento de APIs.' }
         ];
         
 
@@ -103,6 +112,26 @@ export class ConteudoHommeComponent {
     'assets/shaintlogo.png'
   ];
 
+    // Propriedades para o formulário
+  contactForm: FormGroup;
+  currentStep = 1;
+  totalSteps = 4;
+  progressPercentage = 0;
+  selectedServices: string[] = [];
+  isSubmitting = false;
+  isSubmitted = false;
+
+
+  // Propriedades existentes do seu conteúdo
+  servicesList = [
+    { title: 'Manutenção de TPAs', icon: 'fas fa-tools' },
+    { title: 'Monitorização', icon: 'fas fa-desktop' },
+    { title: 'Ativação', icon: 'fas fa-power-off' },
+    { title: 'Suporte Técnico', icon: 'fas fa-headset' }
+  ];
+
+
+
   ngAfterViewInit() {
     // What We Do - Fade + Slide from Top
     gsap.from('#what-we-do', {
@@ -166,4 +195,124 @@ export class ConteudoHommeComponent {
     });
   }
 
+
+    constructor(private fb: FormBuilder) {
+    this.contactForm = this.fb.group({
+      companyName: ['', Validators.required],
+      industry: ['', Validators.required],
+      companyDescription: [''],
+      specificNeeds: [''],
+      fullName: ['', Validators.required],
+      position: [''],
+      email: ['', [Validators.required, Validators.email]],
+      phone: [''],
+      agreeTerms: [false, Validators.requiredTrue]
+    });
+  }
+
+  ngOnInit(): void {
+    this.updateProgress();
+  }
+
+  // Métodos do formulário
+  nextStep(): void {
+    if (this.validateCurrentStep()) {
+      if (this.currentStep < this.totalSteps) {
+        this.currentStep++;
+        this.updateProgress();
+      }
+    }
+  }
+
+  prevStep(): void {
+    if (this.currentStep > 1) {
+      this.currentStep--;
+      this.updateProgress();
+    }
+  }
+
+  validateCurrentStep(): boolean {
+    let isValid = true;
+    
+    switch (this.currentStep) {
+      case 1:
+        if (this.contactForm.get('companyName')?.invalid) {
+          this.contactForm.get('companyName')?.markAsTouched();
+          isValid = false;
+        }
+        if (this.contactForm.get('industry')?.invalid) {
+          this.contactForm.get('industry')?.markAsTouched();
+          isValid = false;
+        }
+        break;
+      case 3:
+        if (this.contactForm.get('fullName')?.invalid) {
+          this.contactForm.get('fullName')?.markAsTouched();
+          isValid = false;
+        }
+        if (this.contactForm.get('email')?.invalid) {
+          this.contactForm.get('email')?.markAsTouched();
+          isValid = false;
+        }
+        break;
+    }
+    
+    return isValid;
+  }
+
+  updateProgress(): void {
+    this.progressPercentage = ((this.currentStep - 1) / (this.totalSteps - 1)) * 100;
+  }
+
+  onServiceChange(event: any, service: string): void {
+    if (event.target.checked) {
+      this.selectedServices.push(service);
+    } else {
+      const index = this.selectedServices.indexOf(service);
+      if (index > -1) {
+        this.selectedServices.splice(index, 1);
+      }
+    }
+  }
+
+  getIndustryName(value: string): string {
+    const industries: { [key: string]: string } = {
+      'financeiro': 'Financeiro/Bancário',
+      'varejo': 'Varejo',
+      'servicos': 'Serviços',
+      'outro': 'Outro'
+    };
+    return industries[value] || value;
+  }
+
+  onSubmit(): void {
+    if (this.contactForm.get('agreeTerms')?.invalid) {
+      this.contactForm.get('agreeTerms')?.markAsTouched();
+      return;
+    }
+
+    this.isSubmitting = true;
+
+    // Simular envio (substituir por chamada HTTP real)
+    setTimeout(() => {
+      this.isSubmitting = false;
+      this.isSubmitted = true;
+      
+      // Aqui você faria a chamada HTTP para enviar os dados
+      console.log('Dados do formulário:', {
+        ...this.contactForm.value,
+        services: this.selectedServices
+      });
+    }, 2000);
+  }
+
+  resetForm(): void {
+    this.contactForm.reset();
+    this.selectedServices = [];
+    this.currentStep = 1;
+    this.updateProgress();
+    this.isSubmitted = false;
+  }
+
 }
+
