@@ -1,0 +1,330 @@
+.btn-one {
+    background: linear-gradient(#B4C2E7, #646c80);
+}
+.text-one {
+    color: linear-gradient(#B4C2E7, #646c80);
+}
+.btn-hero {
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.card-group {
+    gap: 16px;
+    width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.card-inicio {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: start;
+    border-radius: 15px;
+    max-width: 100%;
+    cursor: pointer;
+    gap: 10px;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15),
+        0 0 15px rgba(0, 123, 255, 0.1);
+    transition: 0.2s;
+    /* toque de cor */
+}
+
+.card-inicio:hover {
+    backdrop-filter: blur(10px);
+    box-shadow: none;
+    /* toque de cor */
+}
+
+.iconn {
+    padding: 10px;
+    background-color: #b4c2e750;
+    font-size: 2rem;
+    color: #828eaf;
+    border-radius: 8px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #B4C2E7;
+}
+
+.icon {
+    padding: 10px;
+    font-size: 3rem;
+    color: #ffffff;
+    border-radius: 50%;
+    width: 80px;
+    background-color: #101729;
+    height: 80px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 30px;
+    transition: 0.2s;
+    background-color: #F8F9FA;
+}
+
+.card:hover {
+    background-color: #101729;
+    color: rgb(255, 255, 255);
+
+    .icon {
+        color: #101729;
+        background-color: #fff;
+    }
+}
+
+.portfolio-box {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
+    img {
+        transition: transform 0.3s;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.6);
+        width: 100%;
+        height: 100%;
+        color: #fff;
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.4s;
+    }
+
+    &:hover img {
+        transform: scale(1.1);
+    }
+
+    &:hover .overlay {
+        opacity: 1;
+    }
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h5 {
+    font-weight: bold;
+}
+
+
+
+/* Responsividade básica */
+@media (max-width: 430px) {
+    .mobile-p {
+        padding: 20px;
+    }
+
+    .card-inicio {
+        max-width: 100%;
+    }
+
+    .card-group {
+        padding: 20px;
+    }
+}
+
+
+/* Custom styles for the form section */
+#contact-form {
+    position: relative;
+    overflow: hidden;
+}
+
+.floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.1;
+    background: linear-gradient(135deg, #4e73ff 0%, #00d2ff 100%);
+    animation: float 15s infinite linear;
+}
+
+.shape-1 {
+    width: 300px;
+    height: 300px;
+    top: -150px;
+    left: -100px;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 200px;
+    height: 200px;
+    bottom: -50px;
+    right: -50px;
+    animation-delay: -5s;
+}
+
+.shape-3 {
+    width: 150px;
+    height: 150px;
+    top: 50%;
+    left: 10%;
+    animation-delay: -10s;
+}
+
+.shape-4 {
+    width: 100px;
+    height: 100px;
+    bottom: 20%;
+    right: 20%;
+    animation-delay: -7s;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(5px, 10px) rotate(5deg);
+    }
+    50% {
+        transform: translate(10px, 5px) rotate(0deg);
+    }
+    75% {
+        transform: translate(5px, 0px) rotate(-5deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+.form-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.step {
+    position: relative;
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+.step.active {
+    color: #fff;
+    font-weight: 500;
+}
+
+.step::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.step.active::after {
+    background-color: var(--bs-primary);
+}
+
+.form-check-card .btn {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.form-check-card .btn-check:checked + .btn {
+    background: linear-gradient(135deg, var(--bs-primary) 0%, #0a58ca 100%);
+    border-color: var(--bs-primary);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+.form-check-card .btn:hover {
+    border-color: var(--bs-primary);
+    color: #fff;
+}
+
+.review-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #4e73ff 0%, #00d2ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.btn-one {
+    background: linear-gradient(135deg, #4e73ff 0%, #00d2ff 100%);
+    border: none;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.btn-one:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+    color: white;
+}
+
+
+#contact {
+  min-height: 60vh;
+}
+
+.contact-form input {
+  border: 2px solid #001c68;
+}
+
+.contact-form button {
+  border: 2px solid #68005f;
+  background-color: white;
+}
+
+.contact-form button {
+  transition: all 0.3s ease-in-out;
+}
+
+.contact-form button:hover {
+    background-color: rgba(255, 255, 255, 0.659);
+  color: #001c68;
+}
+

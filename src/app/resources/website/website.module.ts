@@ -9,6 +9,7 @@ import { ConteudoHommeComponent } from './template/conteudo-homme/conteudo-homme
 import { FooterComponent } from './template/footer/footer.component';
 import { SolucoesComponent } from './template/solucoes/solucoes.component';
 import { FormsModule } from '@angular/forms';
+import { ContactosComponent } from './template/contactos/contactos.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     LandingPageComponent,
     ConteudoHommeComponent,
     FooterComponent,
-    SolucoesComponent
+    SolucoesComponent,
+    ContactosComponent
   ],
   imports: [
     CommonModule,

@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ContactosComponent } from './template/contactos/contactos.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'contactos',
+    component: ContactosComponent
   },
   {
     path: 'home',
