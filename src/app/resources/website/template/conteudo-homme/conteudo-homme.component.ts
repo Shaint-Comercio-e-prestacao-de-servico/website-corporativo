@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import iziToast from 'izitoast';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -199,6 +200,29 @@ export class ConteudoHommeComponent implements OnInit {
     });
   }
 
+  formData = {
+    nome: '',
+    email: '',
+    empresa: '',
+    termos: false
+  };
+
+  onSubmit(form: any) {
+    if (this.formData.termos) {
+      console.log('Formulário enviado:', this.formData);
+
+      iziToast.success({
+        title: 'Formulário Enviado',
+        message: 'Entraremos em contacto em breve.',
+        position: 'topRight'
+      });
+
+      // Resetar formulário inteiro
+      form.resetForm();
+    }
+  }
+
+
 
   constructor(private fb: FormBuilder) {
     this.contactForm = this.fb.group({
@@ -289,26 +313,7 @@ export class ConteudoHommeComponent implements OnInit {
     return industries[value] || value;
   }
 
-  onSubmit(): void {
-    if (this.contactForm.get('agreeTerms')?.invalid) {
-      this.contactForm.get('agreeTerms')?.markAsTouched();
-      return;
-    }
 
-    this.isSubmitting = true;
-
-    // Simular envio (substituir por chamada HTTP real)
-    setTimeout(() => {
-      this.isSubmitting = false;
-      this.isSubmitted = true;
-
-      // Aqui você faria a chamada HTTP para enviar os dados
-      console.log('Dados do formulário:', {
-        ...this.contactForm.value,
-        services: this.selectedServices
-      });
-    }, 2000);
-  }
 
   resetForm(): void {
     this.contactForm.reset();

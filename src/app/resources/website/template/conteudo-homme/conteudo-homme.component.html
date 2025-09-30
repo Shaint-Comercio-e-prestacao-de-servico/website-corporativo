@@ -27,7 +27,7 @@
 </section>
 
 <!-- Who We Are Section -->
-<section class="py-5 text-white " id="who-we-are" style="background-color: #142041f5;">
+<section class="py-5 text-white " id="who-we-are" style="background: linear-gradient(#1e2f5ff5,#0a122af5);">
     <div class="container mobile-p">
         <div class="row align-items-center">
             <div class="col-lg-6 mb-4 mb-lg-0">
@@ -94,6 +94,13 @@
         </div>
     </div>
 </section>
+
+
+
+
+<!-- <app-solucoes></app-solucoes>
+
+ -->
 
 <!-- Portfolio Section -->
 <!-- <section class="py-5" id="portfolio">
@@ -168,6 +175,64 @@
         </div>
     </div>
 </section> -->
+
+
+<!-- Contact Section -->
+<section class="py-5 text-white" id="contact" style="background: linear-gradient(#1e2f5ff5,#0a122af5);">
+  <div class="container" style="margin-top: 100px;">
+    <div class="row align-items-center">
+      
+      <!-- Texto à esquerda -->
+      <div class="col-md-6 mb-4 mb-md-0">
+        <h1 class="fw-bold display-5">Vamos falar<br>sobre o seu projecto</h1>
+        <p class="mt-3 fs-5 text-white fw-semibold">
+          Solicite mais informações e descubra como podemos ajudar o seu negócio a crescer.
+        </p>
+      </div>
+
+      <!-- Formulário à direita -->
+      <div class="col-md-6">
+        <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" class="contact-form">
+          
+          <!-- Nome -->
+          <div class="mb-3">
+            <input type="text" class="form-control" name="nome" placeholder="Nome *"
+                   [(ngModel)]="formData.nome" required />
+          </div>
+
+          <!-- Email & Empresa -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <input type="email" class="form-control" name="email" placeholder="Email *"
+                     [(ngModel)]="formData.email" required />
+            </div>
+            <div class="col-md-6 mb-3">
+              <input type="text" class="form-control" name="empresa" placeholder="Empresa *"
+                     [(ngModel)]="formData.empresa" required />
+            </div>
+          </div>
+
+          <!-- Checkbox -->
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" name="termos" id="termos"
+                   [(ngModel)]="formData.termos" required />
+            <label class="form-check-label" for="termos">
+              Está de acordo com a nossa <a href="#" class="text-decoration-none text-primary">Política de Privacidade</a>.
+            </label>
+          </div>
+
+          <!-- Botão -->
+          <button type="submit" class="btn btn-outline-primary px-4 fw-bold"
+                  [disabled]="!contactForm.valid">
+            Enviar
+          </button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 
 

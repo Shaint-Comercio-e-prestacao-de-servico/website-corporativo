@@ -124,7 +124,7 @@
 /* muda o fundo do item ativo */
 .navbar-nav .nav-item.active {
     font-weight: bold;
-    background: linear-gradient(#B4C2E7, #646c80);
+    background: linear-gradient(#203774, #646c80);
     /* ou qualquer cor desejada */
     color: rgba(255, 255, 255, 0.959);
     /* texto branco para contraste */

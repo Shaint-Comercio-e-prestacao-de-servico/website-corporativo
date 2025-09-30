@@ -1,0 +1,13 @@
+.carousel-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.carousel-track {
+  transition: transform 0.6s ease-in-out;
+}
+
+.produto-item {
+  width: 25%; /* 4 itens visíveis (100 / 4) */
+  box-sizing: border-box;
+}

@@ -1,0 +1,18 @@
+
+
+
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="fw-bold mb-4 text-center">Nossos Produtos</h2>
+
+    <div class="carousel-wrapper overflow-hidden">
+  <div class="carousel-track d-flex" [ngStyle]="{'transform': 'translateX(-' + currentIndex * itemWidth + 'px)'}">
+    <div class="produto-item flex-shrink-0 bg-dark text-white p-4 text-center"
+         *ngFor="let p of produtos">
+      {{ p.title }}
+    </div>
+  </div>
+</div>
+
+  </div>
+</section>

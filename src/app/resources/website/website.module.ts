@@ -7,6 +7,8 @@ import { HeaderComponent } from './template/header/header.component';
 import { LandingPageComponent } from './template/landing-page/landing-page.component';
 import { ConteudoHommeComponent } from './template/conteudo-homme/conteudo-homme.component';
 import { FooterComponent } from './template/footer/footer.component';
+import { SolucoesComponent } from './template/solucoes/solucoes.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,11 +17,12 @@ import { FooterComponent } from './template/footer/footer.component';
     HeaderComponent,
     LandingPageComponent,
     ConteudoHommeComponent,
-    FooterComponent
+    FooterComponent,
+    SolucoesComponent
   ],
   imports: [
     CommonModule,
-    WebsiteRoutingModule
+    FormsModule
   ]
 })
 export class WebsiteModule { }
