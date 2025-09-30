@@ -114,7 +114,7 @@ export class ConteudoHommeComponent implements OnInit {
     'assets/sakura.png',
     'assets/suge.png',
     'assets/janury.png',
-    'assets/mdc.png',
+    'assets/mdcshopping.png',
     'assets/shaintlogo.png'
   ];
 
