@@ -14,7 +14,7 @@ gsap.registerPlugin(ScrollTrigger);
   templateUrl: './conteudo-homme.component.html',
   styleUrls: ['./conteudo-homme.component.css']
 })
-export class ConteudoHommeComponent implements OnInit{
+export class ConteudoHommeComponent implements OnInit {
   services = [
     {
       id: 1,
@@ -38,11 +38,11 @@ export class ConteudoHommeComponent implements OnInit{
     }
   ];
   teamMembers = [
-            { name: 'Luciano Gonçalves', position: 'Coordenador de TI', image: 'assets/img/luciano.jpg', description: 'Especialista em sistemas de informação com mais de 15 anos de experiência no setor.' },
-            { name: 'Wester Tito', position: 'Desenvolvedor Frontend', image: 'assets/img/wester.jpg', description: 'Especialista em desenvolvimento frontend e design de layouts intuitivos.' },
-            { name: 'Pedro Kondo', position: 'Desenvolvedor Backend', image: 'assets/img/pedro.jpg', description: 'Especialista em integração de sistemas e desenvolvimento de APIs.' }
-        ];
-        
+    { name: 'Luciano Gonçalves', position: 'Coordenador de TI', image: 'assets/img/luciano.jpg', description: 'Especialista em sistemas de informação com mais de 15 anos de experiência no setor.' },
+    { name: 'Wester Tito', position: 'Desenvolvedor Frontend', image: 'assets/img/wester.jpg', description: 'Especialista em desenvolvimento frontend e design de layouts intuitivos.' },
+    { name: 'Pedro Kondo', position: 'Desenvolvedor Backend', image: 'assets/img/pedro.jpg', description: 'Especialista em integração de sistemas e desenvolvimento de APIs.' }
+  ];
+
 
   expertise = [
     {
@@ -109,10 +109,14 @@ export class ConteudoHommeComponent implements OnInit{
   ];
 
   clientLogos = [
+    'assets/keve.png',
+    'assets/atlantico.png',
+    'assets/mdc.png',
+    'assets/suge.png',
     'assets/shaintlogo.png'
   ];
 
-    // Propriedades para o formulário
+  // Propriedades para o formulário
   contactForm: FormGroup;
   currentStep = 1;
   totalSteps = 4;
@@ -196,7 +200,7 @@ export class ConteudoHommeComponent implements OnInit{
   }
 
 
-    constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder) {
     this.contactForm = this.fb.group({
       companyName: ['', Validators.required],
       industry: ['', Validators.required],
@@ -233,7 +237,7 @@ export class ConteudoHommeComponent implements OnInit{
 
   validateCurrentStep(): boolean {
     let isValid = true;
-    
+
     switch (this.currentStep) {
       case 1:
         if (this.contactForm.get('companyName')?.invalid) {
@@ -256,7 +260,7 @@ export class ConteudoHommeComponent implements OnInit{
         }
         break;
     }
-    
+
     return isValid;
   }
 
@@ -297,7 +301,7 @@ export class ConteudoHommeComponent implements OnInit{
     setTimeout(() => {
       this.isSubmitting = false;
       this.isSubmitted = true;
-      
+
       // Aqui você faria a chamada HTTP para enviar os dados
       console.log('Dados do formulário:', {
         ...this.contactForm.value,
