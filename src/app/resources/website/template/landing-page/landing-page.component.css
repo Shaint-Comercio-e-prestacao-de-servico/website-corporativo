@@ -79,10 +79,21 @@
     background: linear-gradient(#B4C2E7, #646c80);
 }
 
+
+
 /* Responsividade básica */
 @media (max-width: 414px) {
     .mobile {
         display: none;
+    }
+
+    .nome-logo{
+        h5{
+            display: none;
+        }
+        p{
+            display: none;
+        }
     }
 
     .hero-section {
@@ -110,7 +121,7 @@
 
 /* fundo preto quando a classe 'scrolled' estiver ativa */
 .navbar.scrolled {
-    background-color: rgba(20, 32, 65, 0.959);
+    background-color: #0C1652;
     /* preto */
 }
 
