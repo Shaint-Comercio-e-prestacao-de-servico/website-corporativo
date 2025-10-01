@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import iziToast from 'izitoast';
+import { ContactService } from '../../core/services/contact.service';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -118,8 +119,6 @@ export class ConteudoHommeComponent implements OnInit {
     'assets/shaintlogo.png'
   ];
 
-  // Propriedades para o formulário
-  contactForm: FormGroup;
   currentStep = 1;
   totalSteps = 4;
   progressPercentage = 0;
@@ -205,124 +204,61 @@ export class ConteudoHommeComponent implements OnInit {
     nome: '',
     email: '',
     empresa: '',
-    termos: false
+    termos: false,
+    servico: '' // novo campo
   };
 
+  constructor(private contactService: ContactService) { }
+
+  // Lista de serviços disponíveis
+  servicos = [
+    'Diagnóstico e Reparação',
+    'Substituição de Peças',
+    'Atualização de Firmware',
+    'Consultoria Especializada',
+    'Treinamentos Corporativos',
+    'Desenvolvimento de Sistemas'
+  ];
+
+  loading = false;
+  successMessage = '';
+  errorMessage = '';
+
   onSubmit(form: any) {
-    if (this.formData.termos) {
-      console.log('Formulário enviado:', this.formData);
+    if (form.valid) {
+      this.loading = true;
+      this.successMessage = '';
+      this.errorMessage = '';
 
-      iziToast.success({
-        title: 'Formulário Enviado',
-        message: 'Entraremos em contacto em breve.',
-        position: 'topRight'
+      this.contactService.sendContact(this.formData).subscribe({
+        next: (res) => {
+          iziToast.success({
+            title: 'Sucesso',
+            message: 'Brevemente entraremos em contacto.',
+            position: 'topRight'
+          });
+          this.successMessage = '✅ Email enviado com sucesso!';
+          this.loading = false;
+          form.resetForm(); // limpa o formulário
+        },
+        error: (err) => {
+          iziToast.error({
+            title: 'erro',
+            message: 'Erro ao enviar.',
+            position: 'topRight'
+          });
+          this.errorMessage = '❌ Erro ao enviar o email. Tente novamente.';
+          console.error(err);
+          this.loading = false;
+        }
       });
-
-      // Resetar formulário inteiro
-      form.resetForm();
     }
-  }
-
-
-
-  constructor(private fb: FormBuilder) {
-    this.contactForm = this.fb.group({
-      companyName: ['', Validators.required],
-      industry: ['', Validators.required],
-      companyDescription: [''],
-      specificNeeds: [''],
-      fullName: ['', Validators.required],
-      position: [''],
-      email: ['', [Validators.required, Validators.email]],
-      phone: [''],
-      agreeTerms: [false, Validators.requiredTrue]
-    });
   }
 
   ngOnInit(): void {
-    this.updateProgress();
+   
   }
 
-  // Métodos do formulário
-  nextStep(): void {
-    if (this.validateCurrentStep()) {
-      if (this.currentStep < this.totalSteps) {
-        this.currentStep++;
-        this.updateProgress();
-      }
-    }
-  }
-
-  prevStep(): void {
-    if (this.currentStep > 1) {
-      this.currentStep--;
-      this.updateProgress();
-    }
-  }
-
-  validateCurrentStep(): boolean {
-    let isValid = true;
-
-    switch (this.currentStep) {
-      case 1:
-        if (this.contactForm.get('companyName')?.invalid) {
-          this.contactForm.get('companyName')?.markAsTouched();
-          isValid = false;
-        }
-        if (this.contactForm.get('industry')?.invalid) {
-          this.contactForm.get('industry')?.markAsTouched();
-          isValid = false;
-        }
-        break;
-      case 3:
-        if (this.contactForm.get('fullName')?.invalid) {
-          this.contactForm.get('fullName')?.markAsTouched();
-          isValid = false;
-        }
-        if (this.contactForm.get('email')?.invalid) {
-          this.contactForm.get('email')?.markAsTouched();
-          isValid = false;
-        }
-        break;
-    }
-
-    return isValid;
-  }
-
-  updateProgress(): void {
-    this.progressPercentage = ((this.currentStep - 1) / (this.totalSteps - 1)) * 100;
-  }
-
-  onServiceChange(event: any, service: string): void {
-    if (event.target.checked) {
-      this.selectedServices.push(service);
-    } else {
-      const index = this.selectedServices.indexOf(service);
-      if (index > -1) {
-        this.selectedServices.splice(index, 1);
-      }
-    }
-  }
-
-  getIndustryName(value: string): string {
-    const industries: { [key: string]: string } = {
-      'financeiro': 'Financeiro/Bancário',
-      'varejo': 'Varejo',
-      'servicos': 'Serviços',
-      'outro': 'Outro'
-    };
-    return industries[value] || value;
-  }
-
-
-
-  resetForm(): void {
-    this.contactForm.reset();
-    this.selectedServices = [];
-    this.currentStep = 1;
-    this.updateProgress();
-    this.isSubmitted = false;
-  }
 
 }
 

@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import iziToast from 'izitoast';
+import { ContactService } from '../../core/services/contact.service';
 
 
 @Component({
@@ -11,75 +12,7 @@ import iziToast from 'izitoast';
   templateUrl: './contactos.component.html',
   styleUrls: ['./contactos.component.css']
 })
-export class ContactosComponent implements OnInit{
-   services = [
-    {
-      id: 1,
-      title: 'Manutenção e Assistência Técnica',
-      icon: 'bi bi-tools'
-    },
-    {
-      id: 2,
-      title: 'Gestão de Parques de Terminais TPA',
-      icon: 'bi bi-credit-card'
-    },
-    {
-      id: 3,
-      title: 'Monitorização e Incidentes de Parques de Terminais',
-      icon: 'bi bi-graph-up-arrow'
-    },
-    {
-      id: 4,
-      title: 'Configuração e Ativação de Terminais TPA',
-      icon: 'bi bi-gear'
-    }
-  ];
-  teamMembers = [
-    { name: 'Luciano Gonçalves', position: 'Coordenador de TI', image: 'assets/img/luciano.jpg', description: 'Especialista em sistemas de informação com mais de 15 anos de experiência no setor.' },
-    { name: 'Wester Tito', position: 'Desenvolvedor Frontend', image: 'assets/img/wester.jpg', description: 'Especialista em desenvolvimento frontend e design de layouts intuitivos.' },
-    { name: 'Pedro Kondo', position: 'Desenvolvedor Backend', image: 'assets/img/pedro.jpg', description: 'Especialista em integração de sistemas e desenvolvimento de APIs.' }
-  ];
-
-
-  expertise = [
-    {
-      title: 'Diagnóstico e Reparação',
-      description: 'Identificamos e corrigimos falhas em TPAs de forma eficiente, garantindo o seu funcionamento contínuo.',
-      icon: 'bi bi-bug'
-    },
-    {
-      title: 'Substituição de Peças',
-      description: 'Trocamos peças danificadas por componentes de alta qualidade para restaurar a performance ideal.',
-      icon: 'bi bi-cpu'
-    },
-    {
-      title: 'Atualização de Firmware',
-      description: 'Mantemos os terminais atualizados com as versões mais seguras e compatíveis.',
-      icon: 'bi bi-cloud-arrow-up'
-    },
-    {
-      title: 'Consultoria Especializada',
-      description: 'Aconselhamento sobre regulamentações, sistemas de pagamento e segurança em TPAs.',
-      icon: 'bi bi-person-check'
-    },
-    {
-      title: 'Treinamentos Corporativos',
-      description: 'Capacitação em gestão de terminais e segurança no uso dos dispositivos.',
-      icon: 'bi bi-mortarboard'
-    },
-    {
-      title: 'Desenvolvimento de Sistemas',
-      description: 'Criação de soluções digitais para TPA´s, desde aplicativos web até sistemas corporativos completos.',
-      icon: 'bi bi-code-slash'
-    }
-  ];
-
-  portfolio = [
-    { title: 'Solução para Bancos', image: 'assets/img/bank-solution.jpg' },
-    { title: 'TPAs Empresariais', image: 'assets/img/tpa-business.jpg' },
-    { title: 'Monitoramento em Tempo Real', image: 'assets/img/monitoring.jpg' },
-    { title: 'Consultoria em Pagamentos Digitais', image: 'assets/img/consulting.jpg' }
-  ];
+export class ContactosComponent implements OnInit {
 
   process = [
     {
@@ -106,39 +39,28 @@ export class ContactosComponent implements OnInit{
   ];
 
   contacts = [
-  {
-    icon: 'bi bi-geo-alt',
-    title: 'Endereço',
-    description: 'Bairro Morro Bento, Avenida 21 de Janeiro'
-  },
-  {
-    icon: 'bi bi-telephone',
-    title: 'Telefone',
-    description: '+244 975 964 289'
-  },
-  {
-    icon: 'bi bi-envelope',
-    title: 'Email',
-    description: 'geral@shaint.ao'
-  },
-  {
-    icon: 'bi bi-clock',
-    title: 'Horário de Atendimento',
-    description: 'Segunda a Sexta, 8h00 - 17h00'
-  }
-];
-
-
-  clientLogos = [
-    'assets/keve.png',
-    'assets/atlantico.png',
-    'assets/mdc.png',
-    'assets/suge.png',
-    'assets/shaintlogo.png'
+    {
+      icon: 'bi bi-geo-alt',
+      title: 'Endereço',
+      description: 'Bairro Morro Bento, Avenida 21 de Janeiro'
+    },
+    {
+      icon: 'bi bi-telephone',
+      title: 'Telefone',
+      description: '+244 975 964 289'
+    },
+    {
+      icon: 'bi bi-envelope',
+      title: 'Email',
+      description: 'geral@shaint.ao'
+    },
+    {
+      icon: 'bi bi-clock',
+      title: 'Horário de Atendimento',
+      description: 'Segunda a Sexta, 8h00 - 17h00'
+    }
   ];
 
-  // Propriedades para o formulário
-  contactForm: FormGroup;
   currentStep = 1;
   totalSteps = 4;
   progressPercentage = 0;
@@ -154,7 +76,6 @@ export class ContactosComponent implements OnInit{
     { title: 'Ativação', icon: 'fas fa-power-off' },
     { title: 'Suporte Técnico', icon: 'fas fa-headset' }
   ];
-
 
 
   ngAfterViewInit() {
@@ -224,122 +145,60 @@ export class ContactosComponent implements OnInit{
     nome: '',
     email: '',
     empresa: '',
-    termos: false
+    termos: false,
+    servico: '' // novo campo
   };
 
+  // Lista de serviços disponíveis
+  servicos = [
+    'Diagnóstico e Reparação',
+    'Substituição de Peças',
+    'Atualização de Firmware',
+    'Consultoria Especializada',
+    'Treinamentos Corporativos',
+    'Desenvolvimento de Sistemas'
+  ];
+
+  loading = false;
+  successMessage = '';
+  errorMessage = '';
+
   onSubmit(form: any) {
-    if (this.formData.termos) {
-      console.log('Formulário enviado:', this.formData);
+    if (form.valid) {
+      this.loading = true;
+      this.successMessage = '';
+      this.errorMessage = '';
 
-      iziToast.success({
-        title: 'Formulário Enviado',
-        message: 'Entraremos em contacto em breve.',
-        position: 'topRight'
+      this.contactService.sendContact(this.formData).subscribe({
+        next: (res) => {
+          iziToast.success({
+            title: 'Sucesso',
+            message: 'Brevemente entraremos em contacto.',
+            position: 'topRight'
+          });
+          this.successMessage = '✅ Email enviado com sucesso!';
+          this.loading = false;
+          form.resetForm(); // limpa o formulário
+        },
+        error: (err) => {
+          iziToast.error({
+            title: 'erro',
+            message: 'Erro ao enviar.',
+            position: 'topRight'
+          });
+          this.errorMessage = '❌ Erro ao enviar o email. Tente novamente.';
+          console.error(err);
+          this.loading = false;
+        }
       });
-
-      // Resetar formulário inteiro
-      form.resetForm();
     }
   }
 
-
-
-  constructor(private fb: FormBuilder) {
-    this.contactForm = this.fb.group({
-      companyName: ['', Validators.required],
-      industry: ['', Validators.required],
-      companyDescription: [''],
-      specificNeeds: [''],
-      fullName: ['', Validators.required],
-      position: [''],
-      email: ['', [Validators.required, Validators.email]],
-      phone: [''],
-      agreeTerms: [false, Validators.requiredTrue]
-    });
-  }
+  constructor(private contactService: ContactService) { }
 
   ngOnInit(): void {
-    this.updateProgress();
-  }
 
-  // Métodos do formulário
-  nextStep(): void {
-    if (this.validateCurrentStep()) {
-      if (this.currentStep < this.totalSteps) {
-        this.currentStep++;
-        this.updateProgress();
-      }
-    }
-  }
-
-  prevStep(): void {
-    if (this.currentStep > 1) {
-      this.currentStep--;
-      this.updateProgress();
-    }
-  }
-
-  validateCurrentStep(): boolean {
-    let isValid = true;
-
-    switch (this.currentStep) {
-      case 1:
-        if (this.contactForm.get('companyName')?.invalid) {
-          this.contactForm.get('companyName')?.markAsTouched();
-          isValid = false;
-        }
-        if (this.contactForm.get('industry')?.invalid) {
-          this.contactForm.get('industry')?.markAsTouched();
-          isValid = false;
-        }
-        break;
-      case 3:
-        if (this.contactForm.get('fullName')?.invalid) {
-          this.contactForm.get('fullName')?.markAsTouched();
-          isValid = false;
-        }
-        if (this.contactForm.get('email')?.invalid) {
-          this.contactForm.get('email')?.markAsTouched();
-          isValid = false;
-        }
-        break;
-    }
-
-    return isValid;
-  }
-
-  updateProgress(): void {
-    this.progressPercentage = ((this.currentStep - 1) / (this.totalSteps - 1)) * 100;
-  }
-
-  onServiceChange(event: any, service: string): void {
-    if (event.target.checked) {
-      this.selectedServices.push(service);
-    } else {
-      const index = this.selectedServices.indexOf(service);
-      if (index > -1) {
-        this.selectedServices.splice(index, 1);
-      }
-    }
-  }
-
-  getIndustryName(value: string): string {
-    const industries: { [key: string]: string } = {
-      'financeiro': 'Financeiro/Bancário',
-      'varejo': 'Varejo',
-      'servicos': 'Serviços',
-      'outro': 'Outro'
-    };
-    return industries[value] || value;
   }
 
 
-
-  resetForm(): void {
-    this.contactForm.reset();
-    this.selectedServices = [];
-    this.currentStep = 1;
-    this.updateProgress();
-    this.isSubmitted = false;
-  }
 }
