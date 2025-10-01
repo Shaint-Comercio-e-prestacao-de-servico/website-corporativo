@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ContactService {
 
-  private apiUrl = 'https://backend-email-nine.vercel.app/api/contact';
+  private apiUrl = 'https://backend-email-j1l1lwund-titoosrars-projects.vercel.app/api/contact';
 
   constructor(private http: HttpClient) {}
 
