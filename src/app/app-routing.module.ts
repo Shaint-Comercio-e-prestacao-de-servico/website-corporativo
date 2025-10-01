@@ -1,25 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TemplateComponent } from './resources/website/template/template.component';
+import { ErrorPageComponent } from './resources/website/shared/error-page/error-page.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'website-incubadora',
-    pathMatch: 'full'
-  },
+  { path: '', redirectTo: 'website-incubadora', pathMatch: 'full' },
   {
     path: 'website-incubadora',
-    component: TemplateComponent,
-    children: [
-      {
-        path: 'website',
-        loadChildren: () => import('./resources/website/website.module')
-          .then(m => m.WebsiteModule)
-      }
-    ]
+    loadChildren: () =>
+      import('./resources/website/website.module').then(m => m.WebsiteModule)
   },
-  { path: '**', redirectTo: 'website-incubadora/website' } // fallback
+  { path: '**', component: ErrorPageComponent } 
 ];
 
 @NgModule({

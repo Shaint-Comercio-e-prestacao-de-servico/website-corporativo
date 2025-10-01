@@ -1,18 +1,77 @@
+<!-- What We Do Section -->
+<section class="py-5" id="what-we-do">
+    <div class="container mobile-p inicio-content">
+
+        <h1 class="fw-bold display-5 mb-4 hero-subtitle">
+            Nossos Serviços
+        </h1>
+
+        <p class="mb-5">
+            A Incubadora Tecnológica disponibiliza soluções técnicas completas para terminais de pagamentos automáticos
+            (TPAs),
+            oferecendo manutenção, monitorização, ativação e suporte técnico com excelência.
+        </p>
+        <div class="row g-3">
+            <div class="col-12 col-sm-6 col-lg-6 col-xl-3" *ngFor="let service of services">
+                <div class="card-inicio">
+                    <div class="iconn mb-0">
+                        <i [ngClass]="service.icon"></i>
+                    </div>
+                    <p class="fw-bold mb-0">{{ service.title }}</p>
+                </div>
+            </div>
+        </div>
 
 
-
-<section class="py-5 bg-light">
-  <div class="container">
-    <h2 class="fw-bold mb-4 text-center">Nossos Produtos</h2>
-
-    <div class="carousel-wrapper overflow-hidden">
-  <div class="carousel-track d-flex" [ngStyle]="{'transform': 'translateX(-' + currentIndex * itemWidth + 'px)'}">
-    <div class="produto-item flex-shrink-0 bg-dark text-white p-4 text-center"
-         *ngFor="let p of produtos">
-      {{ p.title }}
     </div>
-  </div>
-</div>
-
-  </div>
 </section>
+
+
+
+<!-- Areas of Expertise -->
+<section class="py-5 bg-light mobile-p" id="expertise">
+    <div class="container text-center">
+        <h1 class="fw-bold display-5 mb-4 hero-subtitle">
+            Áreas de Especialização
+        </h1>
+        <div class="row mt-4">
+            <div class="col-md-4 mb-4" *ngFor="let area of expertise">
+                <div class="card p-4 h-100 shadow-sm">
+                    <div class="icon mb-3"><i [ngClass]="area.icon"></i></div>
+                    <h5 class="mb-2">{{ area.title }}</h5>
+                    <p>{{ area.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- <app-solucoes></app-solucoes>
+
+ -->
+
+<!-- Portfolio Section -->
+<!-- <section class="py-5" id="portfolio">
+    <div class="container text-center">
+        <h1 class="fw-bold display-5 mb-4 hero-subtitle">
+            Casos de Sucesso
+        </h1>
+        <div class="row">
+            <div class="col-md-3 mb-4" *ngFor="let item of portfolio">
+                <div class="portfolio-box">
+                    <img [src]="item.image" class="img-fluid rounded shadow-sm" />
+                    <div class="overlay">
+                        <h5>{{ item.title }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+
+
+<app-footer></app-footer>

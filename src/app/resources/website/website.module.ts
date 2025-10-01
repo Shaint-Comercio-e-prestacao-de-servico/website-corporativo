@@ -10,6 +10,9 @@ import { FooterComponent } from './template/footer/footer.component';
 import { SolucoesComponent } from './template/solucoes/solucoes.component';
 import { FormsModule } from '@angular/forms';
 import { ContactosComponent } from './template/contactos/contactos.component';
+import { RouterModule } from '@angular/router';
+import { SobreComponent } from './template/sobre/sobre.component';
+import { LoadingPageComponent } from './shared/loading-page/loading-page.component';
 
 
 @NgModule({
@@ -20,11 +23,15 @@ import { ContactosComponent } from './template/contactos/contactos.component';
     ConteudoHommeComponent,
     FooterComponent,
     SolucoesComponent,
-    ContactosComponent
+    ContactosComponent,
+    SobreComponent,
+    LoadingPageComponent
   ],
   imports: [
     CommonModule,
-    FormsModule
+    RouterModule,
+    FormsModule,
+    WebsiteRoutingModule
   ]
 })
 export class WebsiteModule { }

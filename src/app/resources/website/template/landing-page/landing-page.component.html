@@ -2,9 +2,12 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg py-3 fixed-top shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold fs-6 text-light d-flex align-items-center" href="#">
+            <a class="navbar-brand fw-bold fs-6 text-light d-flex align-items-center justify-content-center" href="#">
                 <img src="assets/logowhiteincubadora.png" alt="Logo" width="50" class="me-2">
-                INCUBADORA TECNOLÓGICA
+                <div class="nome-logo">
+                    <h5>INCUBADORA TECNOLÓGICA</h5>
+                    <p>Soluçóes completas para Terminais de Pagamento automático.</p>
+                </div>
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -13,10 +16,10 @@
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav me-4">
-                    <li class="nav-item btn-hero" routerLinkActive="active" routerLink="/website-incubadora">Home</li>
-                    <li class="nav-item"><a class="linknone text-light" href="#expertise">Serviços</a></li>
-                    <li class="nav-item"><a class="linknone text-light" href="#who-we-are">Quem somos</a></li>
-                    <li class="nav-item" routerLinkActive="active" routerLink="/contactos">Contactos</li>
+                    <li class="nav-item btn-hero" routerLinkActive="active" routerLink="home">Home</li>
+                     <li class="nav-item btn-hero" routerLinkActive="active" routerLink="servicos">Serviços</li>
+                    <li class="nav-item btn-hero" routerLinkActive="active" routerLink="sobre">Sobre</li>
+                    <li class="nav-item btn-hero" routerLinkActive="active" routerLink="contactos">Contactos</li>
                 </ul>
                 <!--    <a id="btn-join" href="#contactos" class="btn btn-primary px-4">Fale Connosco</a> -->
             </div>
@@ -52,8 +55,8 @@
             </p>
 
             <div class="d-flex gap-3 justify-content-center">
-                <a id="btn-join" class="btn btn-one btn-lg btn-hero px-4">Fale Connosco</a>
-                <a id="btn-story" class="btn btn-outline-light btn-lg btn-hero px-4 mobile">Saiba Mais</a>
+                <a id="btn-join" class="btn btn-one btn-lg btn-hero px-4" routerLink="contactos">Fale Connosco</a>
+                <a id="btn-story" class="btn btn-outline-light btn-lg btn-hero px-4 mobile" routerLink="sobre">Saiba Mais</a>
             </div>
         </div>
     </section>

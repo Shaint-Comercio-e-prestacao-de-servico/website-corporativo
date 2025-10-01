@@ -1,0 +1,82 @@
+/* From Uiverse.io by mihocsaszilard */ 
+.conteudo-load{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loader {
+  align-items: center;
+  border: 16px solid rgba(119, 119, 119, 0.05);
+  border-radius: 50%;
+  box-shadow:
+    0 0 5px #333,
+    0 0 5px #1b1b1b inset;
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  width: 100px;
+}
+
+.loader > .text {
+  color: #aaa;
+  font-size: 10px;
+  font-weight: 200;
+  opacity: 0;
+  transition: all 200ms;
+}
+
+.loader:hover > .text {
+  font-weight: 400;
+  opacity: 1;
+}
+
+.dot,
+.shadow {
+  background-color: #666;
+  border-radius: 50%;
+  height: 16px;
+  margin: 40px;
+  position: absolute;
+  width: 16px;
+}
+
+.shadow:nth-child(1) {
+  animation: orbit 1s infinite 0.02s;
+}
+
+.shadow:nth-child(2) {
+  animation: orbit 1s infinite 0.04s;
+}
+
+.shadow:nth-child(3) {
+  animation: orbit 1s infinite 0.06s;
+}
+
+.dot {
+  animation: orbit 1s infinite;
+  background-color: #000051;
+  border-radius: 50%;
+  height: 18px;
+  position: absolute;
+  width: 18px;
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(42px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(42px) rotate(-360deg);
+  }
+}
+
+.textos{
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.paragraf{
+    font-size: 12px;
+    margin-top: -10px;
+}

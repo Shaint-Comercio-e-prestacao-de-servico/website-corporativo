@@ -105,6 +105,30 @@ export class ContactosComponent implements OnInit{
 
   ];
 
+  contacts = [
+  {
+    icon: 'bi bi-geo-alt',
+    title: 'Endereço',
+    description: 'Bairro Morro Bento, Avenida 21 de Janeiro'
+  },
+  {
+    icon: 'bi bi-telephone',
+    title: 'Telefone',
+    description: '+244 975 964 289'
+  },
+  {
+    icon: 'bi bi-envelope',
+    title: 'Email',
+    description: 'geral@shaint.ao'
+  },
+  {
+    icon: 'bi bi-clock',
+    title: 'Horário de Atendimento',
+    description: 'Segunda a Sexta, 8h00 - 17h00'
+  }
+];
+
+
   clientLogos = [
     'assets/keve.png',
     'assets/atlantico.png',

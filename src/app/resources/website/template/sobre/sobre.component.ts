@@ -7,13 +7,14 @@ import iziToast from 'izitoast';
 
 
 gsap.registerPlugin(ScrollTrigger);
+
 @Component({
-  selector: 'app-solucoes',
-  templateUrl: './solucoes.component.html',
-  styleUrls: ['./solucoes.component.css']
+  selector: 'app-sobre',
+  templateUrl: './sobre.component.html',
+  styleUrls: ['./sobre.component.css']
 })
-export class SolucoesComponent implements OnInit {
-   services = [
+export class SobreComponent {
+  services = [
     {
       id: 1,
       title: 'Manutenção e Assistência Técnica',
@@ -320,5 +321,4 @@ export class SolucoesComponent implements OnInit {
     this.updateProgress();
     this.isSubmitted = false;
   }
-
 }

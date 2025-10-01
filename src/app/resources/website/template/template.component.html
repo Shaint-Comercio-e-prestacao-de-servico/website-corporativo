@@ -1,9 +1,13 @@
-<div class="layout">
+<div class="layout base">
+  <div *ngIf="loading" class="loader-overlay">
+    <app-loading-page></app-loading-page>
+  </div>
+
   <app-landing-page></app-landing-page>
 
   <main>
-    <app-conteudo-homme></app-conteudo-homme>
+    <router-outlet></router-outlet>
   </main>
 
-  <app-footer></app-footer>
+ 
 </div>

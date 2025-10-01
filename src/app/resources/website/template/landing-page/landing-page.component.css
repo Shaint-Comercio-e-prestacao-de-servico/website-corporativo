@@ -6,10 +6,11 @@
     /* espaçamento para navbar fixed-top */
 }
 
-.linknone{
+.linknone {
     text-decoration: none;
     color: #ffffff;
 }
+
 /* SLIDESHOW */
 .slideshow {
     position: absolute;
@@ -111,6 +112,27 @@
 .navbar.scrolled {
     background-color: rgba(20, 32, 65, 0.959);
     /* preto */
+}
+
+.nome-logo {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+
+    h5 {
+        margin-bottom: -5px;
+        font-weight: bold;
+    }
+
+    p {
+        margin-bottom: -5px;
+        font-weight: lighter;
+    }
+}
+
+.navbar-nav {
+    gap: 20px;
 }
 
 .navbar-nav .nav-item {
