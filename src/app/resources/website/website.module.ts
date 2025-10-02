@@ -13,6 +13,7 @@ import { ContactosComponent } from './template/contactos/contactos.component';
 import { RouterModule } from '@angular/router';
 import { SobreComponent } from './template/sobre/sobre.component';
 import { LoadingPageComponent } from './shared/loading-page/loading-page.component';
+import { FormContactosComponent } from './template/form-contactos/form-contactos.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { LoadingPageComponent } from './shared/loading-page/loading-page.compone
     SolucoesComponent,
     ContactosComponent,
     SobreComponent,
-    LoadingPageComponent
+    LoadingPageComponent,
+    FormContactosComponent
   ],
   imports: [
     CommonModule,

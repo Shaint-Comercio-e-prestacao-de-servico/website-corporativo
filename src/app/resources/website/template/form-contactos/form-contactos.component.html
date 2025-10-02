@@ -1,0 +1,76 @@
+
+
+<!-- Contact Section -->
+<section class="py-5 text-white" id="contact"
+    style="background-image: radial-gradient(circle at 10% 8%, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.03) 8%,transparent 8%, transparent 92%),radial-gradient(circle at 87% 45%, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.03) 8%,transparent 8%, transparent 92%),radial-gradient(circle at 9% 67%, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.03) 6%,transparent 6%, transparent 94%),radial-gradient(circle at 31% 83%, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.03) 6%,transparent 6%, transparent 94%),radial-gradient(circle at 46% 54%, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.03) 6%,transparent 6%, transparent 94%),radial-gradient(circle at 16% 24%, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.03) 6%,transparent 6%, transparent 94%),radial-gradient(circle at 18% 9%, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.03) 6%,transparent 6%, transparent 94%),radial-gradient(circle at 85% 69%, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.04) 4%,transparent 4%, transparent 96%),radial-gradient(circle at 55% 7%, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.04) 4%,transparent 4%, transparent 96%),radial-gradient(circle at 69% 69%, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.04) 4%,transparent 4%, transparent 96%),radial-gradient(circle at 68% 60%, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.04) 4%,transparent 4%, transparent 96%),linear-gradient(135deg, rgb(3, 7, 46),rgb(16, 32, 109));">
+    <div class="container" style="margin-top: 100px;">
+        <div class="row align-items-center">
+
+            <!-- Texto à esquerda -->
+            <div class="col-md-6 mb-4 mb-md-0">
+                <h1 class="fw-bold display-5">Vamos falar<br>sobre o seu projecto</h1>
+                <p class="mt-3 fs-5 text-white fw-semibold">
+                    Solicite mais informações e descubra como podemos ajudar o seu negócio a crescer.
+                </p>
+            </div>
+
+            <!-- Formulário à direita -->
+            <div class="col-md-6">
+                <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" class="contact-form">
+
+                    <!-- Nome -->
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="nome" placeholder="Nome *"
+                            [(ngModel)]="formData.nome" required />
+                    </div>
+
+                    <!-- Email & Empresa -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="email" class="form-control" name="email" placeholder="Email *"
+                                [(ngModel)]="formData.email" required />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="text" class="form-control" name="empresa" placeholder="Empresa *"
+                                [(ngModel)]="formData.empresa" required />
+                        </div>
+                    </div>
+
+                    <!-- Serviço -->
+                    <div class="mb-3">
+                        <select class="form-select" name="servico" [(ngModel)]="formData.servico" required>
+                            <option value="" disabled selected>Selecione o serviço desejado *</option>
+                            <option *ngFor="let s of servicos" [value]="s">{{ s }}</option>
+                        </select>
+                    </div>
+
+                    <!-- Termos -->
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" name="termos" id="termos"
+                            [(ngModel)]="formData.termos" required />
+                        <label class="form-check-label" for="termos">
+                            Está de acordo com a nossa <a href="#" class="text-decoration-none text-primary">Política de
+                                Privacidade</a>.
+                        </label>
+                    </div>
+
+                    <!-- Mensagens -->
+                    <div *ngIf="successMsg" class="alert alert-success">{{ successMsg }}</div>
+                    <div *ngIf="errorMsg" class="alert alert-danger">{{ errorMsg }}</div>
+
+                    <!-- Botão -->
+                    <button type="submit" class="btn btn-outline-primary px-4 fw-bold"
+                        [disabled]="!contactForm.valid || loading">
+                        <span *ngIf="!loading">Enviar</span>
+                        <span *ngIf="loading">
+                            <i class="bi bi-arrow-repeat spin"></i> Enviando...
+                        </span>
+                    </button>
+                </form>
+
+
+            </div>
+
+        </div>
+    </div>
+</section>
