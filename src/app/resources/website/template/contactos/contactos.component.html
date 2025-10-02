@@ -55,7 +55,7 @@
                         </div>
                     </div>
 
-                    <!-- Serviço (select) -->
+                    <!-- Serviço -->
                     <div class="mb-3">
                         <select class="form-select" name="servico" [(ngModel)]="formData.servico" required>
                             <option value="" disabled selected>Selecione o serviço desejado *</option>
@@ -63,7 +63,7 @@
                         </select>
                     </div>
 
-                    <!-- Checkbox -->
+                    <!-- Termos -->
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="checkbox" name="termos" id="termos"
                             [(ngModel)]="formData.termos" required />
@@ -73,16 +73,18 @@
                         </label>
                     </div>
 
+                    <!-- Mensagens -->
+                    <div *ngIf="successMsg" class="alert alert-success">{{ successMsg }}</div>
+                    <div *ngIf="errorMsg" class="alert alert-danger">{{ errorMsg }}</div>
+
                     <!-- Botão -->
                     <button type="submit" class="btn btn-outline-primary px-4 fw-bold"
                         [disabled]="!contactForm.valid || loading">
-
                         <span *ngIf="!loading">Enviar</span>
                         <span *ngIf="loading">
                             <i class="bi bi-arrow-repeat spin"></i> Enviando...
                         </span>
                     </button>
-
                 </form>
 
 

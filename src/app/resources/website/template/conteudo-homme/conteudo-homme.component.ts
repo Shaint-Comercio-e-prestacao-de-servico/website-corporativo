@@ -2,9 +2,9 @@ import { Component, AfterViewInit } from '@angular/core';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import iziToast from 'izitoast';
-import { ContactService } from '../../core/services/contact.service';
+import { ContactForm, ContactService } from '../../core/services/contact.service';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -200,60 +200,52 @@ export class ConteudoHommeComponent implements OnInit {
     });
   }
 
-  formData = {
-    nome: '',
-    email: '',
-    empresa: '',
-    termos: false,
-    servico: '' // novo campo
-  };
 
   constructor(private contactService: ContactService) { }
 
-  // Lista de serviços disponíveis
-  servicos = [
-    'Diagnóstico e Reparação',
-    'Substituição de Peças',
-    'Atualização de Firmware',
-    'Consultoria Especializada',
-    'Treinamentos Corporativos',
-    'Desenvolvimento de Sistemas'
-  ];
-
-  loading = false;
-  successMessage = '';
-  errorMessage = '';
-
-  onSubmit(form: any) {
-    if (form.valid) {
+    formData: ContactForm = {
+      nome: '',
+      email: '',
+      empresa: '',
+      servico: '',
+      termos: false
+    };
+  
+    // Lista de serviços disponíveis
+    servicos:string[] = [
+      'Diagnóstico e Reparação',
+      'Substituição de Peças',
+      'Atualização de Firmware',
+      'Consultoria Especializada',
+      'Treinamentos Corporativos',
+      'Desenvolvimento de Sistemas'
+    ];
+  
+   
+    loading = false;
+    successMsg = '';
+    errorMsg = '';
+  
+     onSubmit(form: NgForm) {
+      if (!form.valid) return;
+  
       this.loading = true;
-      this.successMessage = '';
-      this.errorMessage = '';
-
-      this.contactService.sendContact(this.formData).subscribe({
+      this.successMsg = '';
+      this.errorMsg = '';
+  
+      this.contactService.sendContactForm(this.formData).subscribe({
         next: (res) => {
-          iziToast.success({
-            title: 'Sucesso',
-            message: 'Brevemente entraremos em contacto.',
-            position: 'topRight'
-          });
-          this.successMessage = '✅ Email enviado com sucesso!';
           this.loading = false;
-          form.resetForm(); // limpa o formulário
+          this.successMsg = '✅ Formulário enviado com sucesso!';
+          form.resetForm();
         },
         error: (err) => {
-          iziToast.error({
-            title: 'erro',
-            message: 'Erro ao enviar.',
-            position: 'topRight'
-          });
-          this.errorMessage = '❌ Erro ao enviar o email. Tente novamente.';
-          console.error(err);
           this.loading = false;
+          this.errorMsg = '❌ Ocorreu um erro ao enviar. Tente novamente.';
+          console.error(err);
         }
       });
     }
-  }
 
   ngOnInit(): void {
    

@@ -2,9 +2,9 @@ import { Component, AfterViewInit } from '@angular/core';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import iziToast from 'izitoast';
-import { ContactService } from '../../core/services/contact.service';
+import { ContactForm, ContactService } from '../../core/services/contact.service';
 
 
 @Component({
@@ -141,16 +141,16 @@ export class ContactosComponent implements OnInit {
     });
   }
 
-  formData = {
+  formData: ContactForm = {
     nome: '',
     email: '',
     empresa: '',
-    termos: false,
-    servico: '' // novo campo
+    servico: '',
+    termos: false
   };
 
   // Lista de serviços disponíveis
-  servicos = [
+  servicos:string[] = [
     'Diagnóstico e Reparação',
     'Substituição de Peças',
     'Atualização de Firmware',
@@ -159,39 +159,30 @@ export class ContactosComponent implements OnInit {
     'Desenvolvimento de Sistemas'
   ];
 
+ 
   loading = false;
-  successMessage = '';
-  errorMessage = '';
+  successMsg = '';
+  errorMsg = '';
 
-  onSubmit(form: any) {
-    if (form.valid) {
-      this.loading = true;
-      this.successMessage = '';
-      this.errorMessage = '';
+   onSubmit(form: NgForm) {
+    if (!form.valid) return;
 
-      this.contactService.sendContact(this.formData).subscribe({
-        next: (res) => {
-          iziToast.success({
-            title: 'Sucesso',
-            message: 'Brevemente entraremos em contacto.',
-            position: 'topRight'
-          });
-          this.successMessage = '✅ Email enviado com sucesso!';
-          this.loading = false;
-          form.resetForm(); // limpa o formulário
-        },
-        error: (err) => {
-          iziToast.error({
-            title: 'erro',
-            message: 'Erro ao enviar.',
-            position: 'topRight'
-          });
-          this.errorMessage = '❌ Erro ao enviar o email. Tente novamente.';
-          console.error(err);
-          this.loading = false;
-        }
-      });
-    }
+    this.loading = true;
+    this.successMsg = '';
+    this.errorMsg = '';
+
+    this.contactService.sendContactForm(this.formData).subscribe({
+      next: (res) => {
+        this.loading = false;
+        this.successMsg = '✅ Formulário enviado com sucesso!';
+        form.resetForm();
+      },
+      error: (err) => {
+        this.loading = false;
+        this.errorMsg = '❌ Ocorreu um erro ao enviar. Tente novamente.';
+        console.error(err);
+      }
+    });
   }
 
   constructor(private contactService: ContactService) { }
