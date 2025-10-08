@@ -121,7 +121,7 @@
 
 /* fundo preto quando a classe 'scrolled' estiver ativa */
 .navbar.scrolled {
-    background-color: #0C1652;
+    background-color: #E64026;
     /* preto */
 }
 
@@ -157,7 +157,7 @@
 /* muda o fundo do item ativo */
 .navbar-nav .nav-item.active {
     font-weight: bold;
-    background: linear-gradient(#203774, #646c80);
+    background: linear-gradient(rgb(3, 9, 37), rgb(5, 16, 67));
     /* ou qualquer cor desejada */
     color: rgba(255, 255, 255, 0.959);
     /* texto branco para contraste */
