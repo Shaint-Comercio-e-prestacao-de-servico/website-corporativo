@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-loading-page',
@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class LoadingPageComponent {
 
+  @Input() texto: string = '';
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+  
 }
